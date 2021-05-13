@@ -1,0 +1,11 @@
+{
+  "description": "Adds snow to your system\nConsider the possible increasing of CPU load\nAuthor: t.me/ExposedCat_Info",
+  "name": "Snowy",
+  "shell-version": [
+    "40.0",
+    "3.38"
+  ],
+  "url": "",
+  "uuid": "snowy@exposedcat",
+  "version": 2
+}
