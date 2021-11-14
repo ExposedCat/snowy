@@ -2,8 +2,9 @@
   "description": "Make you festive mood with falling snow on your GNOME DE system",
   "name": "Snowy",
   "shell-version": [
-    "40.0",
-    "3.38"
+    "41",
+    "40",
+    "3"
   ],
   "url": "https://github.com/ExposedCat/snowy",
   "uuid": "snowy@exposedcat",
