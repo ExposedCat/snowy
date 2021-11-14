@@ -52,6 +52,7 @@ class Snowflake {
 
 class Manager {
     constructor() {
+        this.timerId = null
         this.snowing = false
         this.snowflakesCount = 0
         this.maxX = 0
@@ -69,7 +70,7 @@ class Manager {
     }
 
     startSnowing() {
-        setInterval(() => {
+        this.timerId = setInterval(() => {
             if (this.snowing && this.snowflakesCount < config.maxFlakes) {
                 const snowFlakesCount = random(config.minFlakes, config.maxFlakes)
                 for (let i = 0; i < snowFlakesCount; ++i) {
@@ -86,6 +87,10 @@ class Manager {
     }
 
     disable() {
+        if (this.timerId) {
+            GLib.Source.remove(this.timerId)
+            this.timerId = null
+        }
         this.snowing = false
     }
 }
