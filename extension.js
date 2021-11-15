@@ -103,7 +103,7 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-async function setInterval(func, delay) {
+function setInterval(func, delay) {
     return GLib.timeout_add(GLib.PRIORITY_DEFAULT, delay, () => {
         func()
         return manager.snowing ? GLib.SOURCE_CONTINUE : GLib.SOURCE_REMOVE
