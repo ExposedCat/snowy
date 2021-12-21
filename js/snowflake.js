@@ -2,10 +2,10 @@ const { St, Clutter } = imports.gi
 const Main = imports.ui.main
 
 const Utils = imports.misc.extensionUtils
-const Me = Utils.getCurrentExtension()
+const Extension = Utils.getCurrentExtension()
 
-const { random } = Me.imports.js.utils
-const { Config } = Me.imports.js.config
+const { random } = Extension.imports.js.utils
+const { Config } = Extension.imports.js.config
 
 
 const config = new Config('org.gnome.shell.extensions.snowy')

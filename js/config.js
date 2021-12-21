@@ -1,5 +1,5 @@
 const Utils = imports.misc.extensionUtils
-const Me = Utils.getCurrentExtension()
+const Extension = Utils.getCurrentExtension()
 
 class Config {
     constructor(id) {

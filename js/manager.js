@@ -2,10 +2,10 @@ const { GLib } = imports.gi
 const Main = imports.ui.main
 
 const Utils = imports.misc.extensionUtils
-const Me = Utils.getCurrentExtension()
-const { Config } = Me.imports.js.config
-const { Snowflake } = Me.imports.js.snowflake
-const { random, setInterval } = Me.imports.js.utils
+const Extension = Utils.getCurrentExtension()
+const { Config } = Extension.imports.js.config
+const { Snowflake } = Extension.imports.js.snowflake
+const { random, setInterval } = Extension.imports.js.utils
 
 const config = new Config('org.gnome.shell.extensions.snowy')
 
