@@ -16,11 +16,12 @@ class Snowflake {
         const iconNumber = random(0, icons.length - 1)
         const icon = icons[iconNumber]
 
-        this.size = random(config.int('min-size'), config.int('max-size'))
         this.label = new St.Label({
             text: icon,
             style_class: 'snowflake'
         })
+        const size = random(config.int('min-size'), config.int('max-size'))
+        this.label.set_style(`font-size: ${size}px;`)
     }
 
     destroy() {
