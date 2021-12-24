@@ -7,11 +7,8 @@ const { Config } = Extension.imports.js.config
 const { Snowflake } = Extension.imports.js.snowflake
 const { random, setInterval } = Extension.imports.js.utils
 
+
 const config = new Config('org.gnome.shell.extensions.snowy')
-
-function startSnowing() {
-
-}
 
 class Manager {
     constructor() {
