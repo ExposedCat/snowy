@@ -124,6 +124,17 @@ All available tweaks listed here:
         <code> 5 </code>
       </td>
     </tr>
+    <tr>
+      <td>
+        <div> Maximal snowflakes number on the screen (max-flakes restriction) </div>
+      </td>
+      <td>
+        <code> flakes-limit </code>
+      </td>
+      <td>
+        <code> 30 </code>
+      </td>
+    </tr>
   </tbody>
 </table>
 <br>

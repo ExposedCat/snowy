@@ -48,12 +48,16 @@ class Manager {
             destroySnowflake()
         }
         const snowFunc = () => {
-            if (this.snowing && this.snowflakesCount < config.int('max-flakes')) {
+            if (this.snowing) {
                 const snowFlakesCount = random(
                     config.int('min-flakes'),
                     config.int('max-flakes')
                 )
-                for (let i = 0; i < snowFlakesCount; ++i) {
+                for (
+                    let i = 0;
+                    i < snowFlakesCount && snowFlakesCount <= config.int('flakes-limit');
+                    ++i
+                ) {
                     const snowflake = new Snowflake()
                     this.snowflakesCount++
                     snowflake.fall(
