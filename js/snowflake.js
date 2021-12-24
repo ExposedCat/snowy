@@ -5,13 +5,10 @@ const Utils = imports.misc.extensionUtils
 const Extension = Utils.getCurrentExtension()
 
 const { random } = Extension.imports.js.utils
-const { Config } = Extension.imports.js.config
 
-
-const config = new Config('org.gnome.shell.extensions.snowy')
 
 class Snowflake {
-    constructor() {
+    constructor(config) {
         const icons = config.string('flake-icons').split(',')
         const iconNumber = random(0, icons.length - 1)
         const icon = icons[iconNumber]

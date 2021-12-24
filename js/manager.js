@@ -3,12 +3,9 @@ const Main = imports.ui.main
 
 const Utils = imports.misc.extensionUtils
 const Extension = Utils.getCurrentExtension()
-const { Config } = Extension.imports.js.config
 const { Snowflake } = Extension.imports.js.snowflake
 const { random, setInterval } = Extension.imports.js.utils
 
-
-const config = new Config('org.gnome.shell.extensions.snowy')
 
 class Manager {
     constructor() {
@@ -41,7 +38,7 @@ class Manager {
         this.snowing = false
     }
 
-    startSnowing() {
+    startSnowing(config) {
         this.snowing = true
         const onAnimationComplete = destroySnowflake => {
             this.snowflakesCount--
@@ -58,7 +55,7 @@ class Manager {
                     i < snowFlakesCount && snowFlakesCount <= config.int('flakes-limit');
                     ++i
                 ) {
-                    const snowflake = new Snowflake()
+                    const snowflake = new Snowflake(config)
                     this.snowflakesCount++
                     snowflake.fall(
                         onAnimationComplete.bind(this),
@@ -73,5 +70,3 @@ class Manager {
         this.timerId = setInterval(snowFunc, endFunc, delay)
     }
 }
-
-const manager = new Manager()
