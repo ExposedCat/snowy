@@ -24,7 +24,7 @@ class Manager {
                 this.maxX = areaX
             }
             let areaY = monitor.height + monitor.y
-            if (areaX > this.maxY) {
+            if (areaY > this.maxY) {
                 this.maxY = areaY
             }
         }
