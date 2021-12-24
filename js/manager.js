@@ -24,7 +24,7 @@ class Manager {
                 this.maxX = areaX
             }
             let areaY = monitor.height + monitor.y
-            if (areaX > this.maxY) {
+            if (areaY > this.maxY) {
                 this.maxY = areaY
             }
         }
@@ -46,13 +46,13 @@ class Manager {
         }
         const snowFunc = () => {
             if (this.snowing) {
-                const snowFlakesCount = random(
+                const newSnowflakesCount = random(
                     config.int('min-flakes'),
                     config.int('max-flakes')
                 )
                 for (
                     let i = 0;
-                    i < snowFlakesCount && snowFlakesCount <= config.int('flakes-limit');
+                    i < newSnowflakesCount && this.snowflakesCount <= config.int('flakes-limit');
                     ++i
                 ) {
                     const snowflake = new Snowflake(config)
