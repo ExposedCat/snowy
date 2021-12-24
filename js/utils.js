@@ -8,7 +8,7 @@ function random(min, max) {
 function setInterval(mainFunc, endFunc, delay) {
     return GLib.timeout_add(
         GLib.PRIORITY_DEFAULT,
-        delay * 2,
+        delay,
         () => {
             mainFunc()
             const next = endFunc() ? GLib.SOURCE_REMOVE : GLib.SOURCE_CONTINUE
