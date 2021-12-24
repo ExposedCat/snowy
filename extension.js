@@ -5,15 +5,12 @@ const { manager } = Extension.imports.js.manager
 
 
 function init() {
-    log('Initialized Snowy')
 }
 
 function enable() {
-    log('Enabled Snowy')
     manager.startSnowing()
 }
 
 function disable() {
-    log('Disabled Snowy')
     manager.stopSnowing()
 }
