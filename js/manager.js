@@ -52,7 +52,7 @@ class Manager {
                 )
                 for (
                     let i = 0;
-                    i < snowFlakesCount && snowFlakesCount <= config.int('flakes-limit');
+                    i < snowFlakesCount && this.snowFlakesCount <= config.int('flakes-limit');
                     ++i
                 ) {
                     const snowflake = new Snowflake(config)
