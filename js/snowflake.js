@@ -28,6 +28,9 @@ class Snowflake {
 
     fall(onCompleteFunc, maxX, maxY) {
         const xPosition = random(0, maxX)
+        const rotationAngle = random(config.int('min-rotation'), config.int('max-rotation'))
+        	* (random(1, 2) % 2 == 1 ? -1 : 1)
+        const fallDuration = random(config.int('min-duration'), config.int('max-duration'))
 
         Main.uiGroup.add_actor(this.label)
         this.label.set_position(xPosition, -50)
@@ -37,8 +40,8 @@ class Snowflake {
         label.ease({
             y: maxY,
             x: xPosition,
-            rotation_angle_z: 30,
-            duration: random(3000, 6000),
+            rotation_angle_z: rotationAngle,
+            duration: fallDuration,
             mode: Clutter.AnimationMode.LINEAR,
             onComplete: () => onCompleteFunc(
                 destroy.bind(this)

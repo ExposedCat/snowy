@@ -43,5 +43,29 @@
             <summary>Maximal snowflakes number on screen</summary>
             <description />
         </key>
+        <!-- MIN DURATION -->
+        <key type="i" name="min-duration">
+            <default>1</default>
+            <summary>Fastest a snowflake can fall</summary>
+            <description />
+        </key>
+        <!-- MAX DURATION -->
+        <key type="i" name="max-duration">
+            <default>5</default>
+            <summary>Slowest a snowflake can fall</summary>
+            <description />
+        </key>
+        <!-- MIN ROTATION -->
+        <key type="i" name="min-rotation">
+            <default>1</default>
+            <summary>Minimal rotation a snowflake can have</summary>
+            <description />
+        </key>
+        <!-- MAX ROTATION -->
+        <key type="i" name="max-rotation">
+            <default>5</default>
+            <summary>Maximal rotation a snowflake can have</summary>
+            <description />
+        </key>
     </schema>
 </schemalist>
