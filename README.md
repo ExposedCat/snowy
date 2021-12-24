@@ -1,6 +1,6 @@
 <h1 align="center">
   SNOWY<br>
-  <img style="width:512px" src="https://extensions.gnome.org/extension-data/screenshots/screenshot_3921.png" alt="Screenshot">
+  <img style="width:512px" src="./preview.png" alt="Screenshot">
 </h1>
 
 <p align="center"><strong>Make you festive mood with falling snow on your GNOME DE system</strong></p>
