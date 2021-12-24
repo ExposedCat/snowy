@@ -39,6 +39,12 @@ GUI settings are still in development (<b>contribution is highly appreciated</b>
   set org.gnome.shell.extensions.snowy \
   GSKEY VALUE
 </pre>
+To see list of current settings values use following command:<br>
+<pre language="bash">
+  gsettings --schemadir \
+  ~/.local/share/gnome-shell/extensions/snowy@exposedcat/schemas \
+  list-recursively org.gnome.shell.extensions.snowy
+</pre>
 Here <code>GSKEY</code> is <b>GSettings Key</b> of setting and <code>VALUE</code> is setting value.<br>
 All available tweaks listed here:
 <br>
