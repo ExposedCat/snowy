@@ -126,7 +126,7 @@ All available tweaks listed here:
     </tr>
     <tr>
       <td>
-        <div> Maximal snowflakes number on the screen (max-flakes restriction) </div>
+        <div> Maximal snowflakes number on the screen (max-flakes restriction). Re-enable extension to apply </div>
       </td>
       <td>
         <code> flakes-limit </code>
