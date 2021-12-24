@@ -16,4 +16,5 @@ function enable() {
 
 function disable() {
     manager.stopSnowing()
+    manager = null
 }
