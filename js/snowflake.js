@@ -29,7 +29,7 @@ class Snowflake {
     fall(onCompleteFunc, maxX, maxY) {
         const xPosition = random(0, maxX)
         const rotationAngle = random(config.int('min-rotation'), config.int('max-rotation'))
-        	* (random(1, 2) % 2 == 1 ? -1 : 1)
+        	* (random(0, 1) || -1)
         const fallDuration = random(config.int('min-duration'), config.int('max-duration'))
 
         Main.uiGroup.add_actor(this.label)
