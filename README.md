@@ -1,10 +1,10 @@
 <h1 align="center">
   SNOWY<br>
   <img style="width:512px" src="./preview.png" alt="Screenshot">
-</h1>
+</h1>  
+<p align="center"><strong>Make you festive mood with falling snow on your GNOME DE system</strong></p>  
 
-<p align="center"><strong>Make you festive mood with falling snow on your GNOME DE system</strong></p>
-
+![Visits Badge](https://badges.pufler.dev/visits/exposedcat/snowy) 
 <br>
 <h1>Installation</h1>
 <h2>GNOME Extensions website (recommended)</h2>
