@@ -7,34 +7,54 @@
             <summary>Snowflake icons</summary>
             <description />
         </key>
-        <!-- MIN SIZE -->
+        <!-- SIZE -->
         <key type="i" name="min-size">
             <default>20</default>
             <summary>Minimal snowflake size</summary>
             <description />
         </key>
-        <!-- MAX SIZE -->
         <key type="i" name="max-size">
             <default>30</default>
             <summary>Maximal snowflake size</summary>
             <description />
         </key>
-        <!-- INTERVAL -->
-        <key type="i" name="interval">
-            <default>2000</default>
-            <summary>Interval of falling (in ms)</summary>
-            <description />
-        </key>
-        <!-- MIN FLAKES -->
+        <!-- FLAKES NUMBER PER FALL -->
         <key type="i" name="min-flakes">
             <default>1</default>
             <summary>Minimal snowflakes number per fall</summary>
             <description />
         </key>
-        <!-- MAX FLAKES -->
         <key type="i" name="max-flakes">
             <default>5</default>
             <summary>Maximal snowflakes number per fall</summary>
+            <description />
+        </key>
+        <!-- ROTATION ANGLE -->
+        <key type="i" name="min-rotation-angle">
+            <default>15</default>
+            <summary>Minimal snowflakes rotation angle (in degrees)</summary>
+            <description />
+        </key>
+        <key type="i" name="max-rotation-angle">
+            <default>45</default>
+            <summary>Maximal snowflakes rotation angle (in degrees)</summary>
+            <description />
+        </key>
+        <!-- FALLING DURATION -->
+        <key type="i" name="min-fall-duration">
+            <default>3000</default>
+            <summary>Minimal snowflakes falling duration (in ms)</summary>
+            <description />
+        </key>
+        <key type="i" name="max-fall-duration">
+            <default>6000</default>
+            <summary>Maximal snowflakes falling duration (in ms)</summary>
+            <description />
+        </key>
+        <!-- FALLING INTERVAL -->
+        <key type="i" name="interval">
+            <default>2000</default>
+            <summary>Interval of falling (in ms)</summary>
             <description />
         </key>
         <!-- FLAKES LIMIT -->
