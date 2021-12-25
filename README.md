@@ -132,6 +132,50 @@ All available tweaks listed here:
     </tr>
     <tr>
       <td>
+        <div> Minimal snowflakes falling duration (in ms) </div>
+      </td>
+      <td>
+        <code> min-fall-duration </code>
+      </td>
+      <td>
+        <code> 3000 </code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div> Maximal snowflakes falling duration (in ms) </div>
+      </td>
+      <td>
+        <code> max-fall-duration </code>
+      </td>
+      <td>
+        <code> 6000 </code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div> Minimal snowflakes rotation angle (in degrees) </div>
+      </td>
+      <td>
+        <code> min-rotation-angle </code>
+      </td>
+      <td>
+        <code> 15 </code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div> Maximal snowflakes rotation angle (in degrees) </div>
+      </td>
+      <td>
+        <code> max-rotation-angle </code>
+      </td>
+      <td>
+        <code> 45 </code>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <div> Maximal snowflakes number on the screen (max-flakes restriction). Re-enable extension to apply </div>
       </td>
       <td>

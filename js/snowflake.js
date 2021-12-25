@@ -17,8 +17,20 @@ class Snowflake {
             text: icon,
             style_class: 'snowflake'
         })
-        const size = random(config.int('min-size'), config.int('max-size'))
+
+        const minSize = config.int('min-size')
+        const maxSize = config.int('max-size')
+        const size = random(minSize, maxSize)
         this.label.set_style(`font-size: ${size}px;`)
+
+        const side = random(0, 1) || -1
+        const minRotation = config.int('min-rotation-angle')
+        const maxRotation = config.int('max-rotation-angle')
+        this.rotationAngle = random(minRotation, maxRotation) * side
+
+        const minDuration = config.int('min-fall-duration')
+        const maxDuration = config.int('max-fall-duration')
+        this.duration = random(minDuration, maxDuration)
     }
 
     destroy() {
@@ -37,8 +49,8 @@ class Snowflake {
         label.ease({
             y: maxY,
             x: xPosition,
-            rotation_angle_z: 30,
-            duration: random(3000, 6000),
+            rotation_angle_z: this.rotationAngle,
+            duration: this.duration,
             mode: Clutter.AnimationMode.LINEAR,
             onComplete: () => onCompleteFunc(
                 destroy.bind(this)
