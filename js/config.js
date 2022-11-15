@@ -1,8 +1,10 @@
+const GObject = imports.gi.GObject
+
 const Utils = imports.misc.extensionUtils
 const Extension = Utils.getCurrentExtension()
 
-class Config {
-	constructor(id) {
+var Config = class Config {
+	constructor() {
 		this.data = Utils.getSettings(id)
 	}
 
