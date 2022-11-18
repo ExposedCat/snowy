@@ -4,7 +4,7 @@ const Utils = imports.misc.extensionUtils
 const Extension = Utils.getCurrentExtension()
 
 var Config = class Config {
-	constructor() {
+	constructor(id) {
 		this.data = Utils.getSettings(id)
 	}
 
