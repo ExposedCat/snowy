@@ -2,9 +2,14 @@
   SNOWY<br>
   <img style="width:512px" src="./preview.png" alt="Screenshot">
 </h1>  
-<p align="center"><strong>Make you festive mood with falling snow on your GNOME DE system</strong></p>  
+<p align="center"><strong>Make you festive mood with falling snow on your GNOME DE system</strong></p>
 
-![Visits Badge](https://badges.pufler.dev/visits/exposedcat/snowy) 
+<div align="center">
+  
+  [![](https://img.shields.io/badge/My-Telegram-informational?style=for-the-badge&logo=telegram&logoColor=26A5E4&color=26A5E4)](https://t.me/ExposedCatDev)
+  [![](https://img.shields.io/badge/My-Reddit-informational?style=for-the-badge&logo=reddit&logoColor=FF5700&color=FF5700)](https://www.reddit.com/user/ExposedCatDev)
+</div>
+
 <br>
 <h1>Installation</h1>
 <h2>GNOME Extensions website (recommended)</h2>
@@ -190,5 +195,6 @@ All available tweaks listed here:
 <br>
 
 ## License
+
 Snowy Gnome Shell extension is distributed under the terms of the GNU General Public License,
 version 2 or later.
