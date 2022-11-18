@@ -6,7 +6,7 @@ const Extension = Utils.getCurrentExtension()
 const { Snowflake } = Extension.imports.js.snowflake
 const { random, setInterval } = Extension.imports.js.utils
 
-class Manager {
+var Manager = class Manager {
 	constructor() {
 		this.timerId = null
 		this.snowing = false

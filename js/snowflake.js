@@ -6,7 +6,7 @@ const Extension = Utils.getCurrentExtension()
 
 const { random } = Extension.imports.js.utils
 
-class Snowflake {
+var Snowflake = class Snowflake {
 	constructor(config) {
 		const icons = config.string('flake-icons').split(',')
 		const iconNumber = random(0, icons.length - 1)

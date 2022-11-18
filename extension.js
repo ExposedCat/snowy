@@ -1,7 +1,8 @@
 const { GLib } = imports.gi
 const Utils = imports.misc.extensionUtils
 const Extension = Utils.getCurrentExtension()
-const { manager: Manager, config: Config } = Extension.imports.js
+const { Config } = Extension.imports.js.config
+const { Manager } = Extension.imports.js.manager
 
 let manager = null
 
