@@ -1,10 +1,10 @@
-const { St, Clutter } = imports.gi
-const Main = imports.ui.main
+import { St, Clutter } from 'gi://GLib'
+import Main from 'resource:///org/gnome/shell/ui/main.js'
 
-const Utils = imports.misc.extensionUtils
-const Extension = Utils.getCurrentExtension()
+import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js'
+//const Extension = Utils.getCurrentExtension()
 
-const { random } = Extension.imports.js.utils
+import { random } = './utils.js'
 
 var Snowflake = class Snowflake {
 	constructor(config) {

@@ -1,10 +1,10 @@
-const { GLib } = imports.gi
-const Main = imports.ui.main
+import GLib from 'gi://GLib'
+import Main from 'resource:///org/gnome/shell/ui/main.js'
 
-const Utils = imports.misc.extensionUtils
-const Extension = Utils.getCurrentExtension()
-const { Snowflake } = Extension.imports.js.snowflake
-const { random, setInterval } = Extension.imports.js.utils
+//const Utils = imports.misc.extensionUtils
+//const Extension = Utils.getCurrentExtension()
+import * as Snowflake from './snowflake.js' 
+import * as from './utils.js'
 
 var Manager = class Manager {
 	constructor() {

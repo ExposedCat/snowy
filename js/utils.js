@@ -1,4 +1,4 @@
-const { GLib } = imports.gi
+import GLib from 'gi://GLib'
 
 function random(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min
