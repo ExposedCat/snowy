@@ -4,7 +4,7 @@ import Main from 'resource:///org/gnome/shell/ui/main.js'
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js'
 //const Extension = Utils.getCurrentExtension()
 
-import { random } = './utils.js'
+import {random} from './utils.js'
 
 var Snowflake = class Snowflake {
 	constructor(config) {

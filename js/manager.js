@@ -3,8 +3,8 @@ import Main from 'resource:///org/gnome/shell/ui/main.js'
 
 //const Utils = imports.misc.extensionUtils
 //const Extension = Utils.getCurrentExtension()
-import * as Snowflake from './snowflake.js' 
-import * as from './utils.js'
+import {Snowflake} from './snowflake.js' 
+import {random, setInterval} from './utils.js'
 
 var Manager = class Manager {
 	constructor() {
