@@ -26,16 +26,7 @@ glib-compile-schemas snowy/schemas
 <pre language="bash">
 <code>mv snowy ~/.local/share/gnome-shell/extensions/snowy@exposedcat
 </code></pre>
-3. Restart shell
-<ul>
-  <li>On X11: restart shell</li>
-  <ol>
-    <li>Press <code>Alt</code>+<code>F2</code></li>
-    <li>Type <code>r</code></li>
-    <li>Press <code>Return</code></li>
-  </ol>
-  <li>On Wayland: logout and login again</li>
-</ul>
+3. Logout and login again
 <h1>Configuration</h1>
 GUI settings are still in development (<b>contribution is highly appreciated</b>), but you can tweak nearly everything using <code>gsettings</code> command:<br>
 <pre language="bash">

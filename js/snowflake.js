@@ -1,12 +1,9 @@
 import { St, Clutter } from 'gi://GLib'
 import Main from 'resource:///org/gnome/shell/ui/main.js'
 
-import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js'
-//const Extension = Utils.getCurrentExtension()
+import { random } from './utils.js'
 
-import {random} from './utils.js'
-
-var Snowflake = class Snowflake {
+export class Snowflake {
 	constructor(config) {
 		const icons = config.string('flake-icons').split(',')
 		const iconNumber = random(0, icons.length - 1)
