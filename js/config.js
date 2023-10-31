@@ -1,7 +1,7 @@
-const GObject = imports.gi.GObject
+import GObject from 'gi://GObject'
 
-const Utils = imports.misc.extensionUtils
-const Extension = Utils.getCurrentExtension()
+import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js'
+//const Extension = Utils.getCurrentExtension()
 
 var Config = class Config {
 	constructor(id) {

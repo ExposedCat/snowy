@@ -1,8 +1,8 @@
-const { GLib } = imports.gi
-const Utils = imports.misc.extensionUtils
-const Extension = Utils.getCurrentExtension()
-const { Config } = Extension.imports.js.config
-const { Manager } = Extension.imports.js.manager
+import GLib from 'gi://GLib'
+import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js'
+//constimportExtension = Utils.getCurrentExtension()
+import {Config} from './js/config.js'
+import {Manager} from './js/manager.js'
 
 let manager = null
 
