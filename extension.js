@@ -1,20 +1,22 @@
-const { GLib } = imports.gi
-const Utils = imports.misc.extensionUtils
-const Extension = Utils.getCurrentExtension()
-const { Config } = Extension.imports.js.config
-const { Manager } = Extension.imports.js.manager
+import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js'
 
-let manager = null
+import { Config } from './js/config.js'
+import { Manager } from './js/manager.js'
 
-function init() {}
-
-function enable() {
-	const config = new Config('org.gnome.shell.extensions.snowy')
-	manager = new Manager()
-	manager.startSnowing(config)
-}
-
-function disable() {
-	manager.stopSnowing()
+export default class SnowyExtension extends Extension {
 	manager = null
+	
+	enable() {
+		if (this.manager === null) {
+			this.manager = new Manager()
+		}
+		const settings = this.getSettings('org.gnome.shell.extensions.snowy');
+		const config = new Config(settings)
+		this.manager.startSnowing(config)
+	}
+	
+	disable() {
+		this.manager.stopSnowing()
+		this.manager = null
+	}
 }

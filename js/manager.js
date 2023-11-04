@@ -1,12 +1,10 @@
-const { GLib } = imports.gi
-const Main = imports.ui.main
+import GLib from 'gi://GLib'
+import * as Main from 'resource:///org/gnome/shell/ui/main.js'
 
-const Utils = imports.misc.extensionUtils
-const Extension = Utils.getCurrentExtension()
-const { Snowflake } = Extension.imports.js.snowflake
-const { random, setInterval } = Extension.imports.js.utils
+import { Snowflake } from './snowflake.js' 
+import { random, setInterval } from './utils.js'
 
-var Manager = class Manager {
+export class Manager {
 	constructor() {
 		this.timerId = null
 		this.snowing = false
@@ -51,8 +49,7 @@ var Manager = class Manager {
 				)
 				for (
 					let i = 0;
-					i < newSnowflakesCount &&
-					this.snowflakesCount <= config.int('flakes-limit');
+					i < newSnowflakesCount && this.snowflakesCount <= config.int('flakes-limit');
 					++i
 				) {
 					const snowflake = new Snowflake(config)
