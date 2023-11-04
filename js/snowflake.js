@@ -1,5 +1,6 @@
-import { St, Clutter } from 'gi://GLib'
-import Main from 'resource:///org/gnome/shell/ui/main.js'
+import St from 'gi://St'
+import Clutter from 'gi://Clutter'
+import * as Main from 'resource:///org/gnome/shell/ui/main.js'
 
 import { random } from './utils.js'
 

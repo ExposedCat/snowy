@@ -1,5 +1,5 @@
 import GLib from 'gi://GLib'
-import Main from 'resource:///org/gnome/shell/ui/main.js'
+import * as Main from 'resource:///org/gnome/shell/ui/main.js'
 
 import { Snowflake } from './snowflake.js' 
 import { random, setInterval } from './utils.js'
