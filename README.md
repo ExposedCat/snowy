@@ -6,184 +6,31 @@
 
 <div align="center">
   
-  [![](https://img.shields.io/badge/My-Telegram-informational?style=for-the-badge&logo=telegram&logoColor=26A5E4&color=26A5E4)](https://t.me/ExposedCatDev)
-  [![](https://img.shields.io/badge/My-Reddit-informational?style=for-the-badge&logo=reddit&logoColor=FF5700&color=FF5700)](https://www.reddit.com/user/ExposedCatDev)
+  [![](https://img.shields.io/badge/author%20blog%20on-Telegram-informational?style=for-the-badge&logo=telegram&logoColor=26A5E4&color=26A5E4)](https://t.me/ExposedCatDev)
+  [![](https://img.shields.io/badge/author-Reddit-informational?style=for-the-badge&logo=reddit&logoColor=FF5700&color=FF5700)](https://www.reddit.com/user/ExposedCatDev)
 </div>
 
 <br>
 <h1>Installation</h1>
-<h2>GNOME Extensions website (recommended)</h2>
+<h2>GNOME website (recommended)</h2>
 <a href="https://extensions.gnome.org/extension/3921/snowy/">
-  <img src="https://micheleg.github.io/dash-to-dock/media/get-it-on-ego.png" height="80">
+  <!-- Button SVG by Just Perfection developer -->
+  <img src="./download-from-ego.svg" height="80">
 </a>
 <h2>Build from source</h2>
-1. Download and build extension
+1. Download extension
 <pre language="bash">
 <code>git clone https://github.com/ExposedCat/snowy.git
-glib-compile-schemas snowy/schemas
 </code></pre>
 2. Add extension to system
 <pre language="bash">
 <code>mv snowy ~/.local/share/gnome-shell/extensions/snowy@exposedcat
 </code></pre>
-3. Logout and login again
-<h1>Configuration</h1>
-GUI settings are still in development (<b>contribution is highly appreciated</b>), but you can tweak nearly everything using <code>gsettings</code> command:<br>
+3. Build extension schemas
 <pre language="bash">
-  gsettings --schemadir \
-  ~/.local/share/gnome-shell/extensions/snowy@exposedcat/schemas \
-  set org.gnome.shell.extensions.snowy \
-  GSKEY VALUE
-</pre>
-To see list of current settings values use following command:<br>
-<pre language="bash">
-  gsettings --schemadir \
-  ~/.local/share/gnome-shell/extensions/snowy@exposedcat/schemas \
-  list-recursively org.gnome.shell.extensions.snowy
-</pre>
-Here <code>GSKEY</code> is <b>GSettings Key</b> of setting and <code>VALUE</code> is setting value.<br>
-All available tweaks listed here:
-<br>
-<br>
-<table>
-  <thead>
-    <tr>
-      <th>
-        <em> Description </em>
-      </th>
-      <th>
-        <em> GSettings Key </em>
-      </th>
-      <th>
-        <em> Default value </em>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <div> Snowflake icons list </div>
-      </td>
-      <td>
-        <code> flake-icons </code>
-      </td>
-      <td>
-        <code> ❅,❆,❄ </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Minimal size of snowflake </div>
-      </td>
-      <td>
-        <code> min-size </code>
-      </td>
-      <td>
-        <code> 20 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Minimal size of snowflake </div>
-      </td>
-      <td>
-        <code> max-size </code>
-      </td>
-      <td>
-        <code> 30 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Snow falling interval in ms (less = higher drop rate) </div>
-      </td>
-      <td>
-        <code> interval </code>
-      </td>
-      <td>
-        <code> 2000 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Minimal snowflakes number per one fall </div>
-      </td>
-      <td>
-        <code> min-flakes </code>
-      </td>
-      <td>
-        <code> 1 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Maximal snowflakes number per one fall </div>
-      </td>
-      <td>
-        <code> max-flakes </code>
-      </td>
-      <td>
-        <code> 5 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Minimal snowflakes falling duration (in ms) </div>
-      </td>
-      <td>
-        <code> min-fall-duration </code>
-      </td>
-      <td>
-        <code> 3000 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Maximal snowflakes falling duration (in ms) </div>
-      </td>
-      <td>
-        <code> max-fall-duration </code>
-      </td>
-      <td>
-        <code> 6000 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Minimal snowflakes rotation angle (in degrees) </div>
-      </td>
-      <td>
-        <code> min-rotation-angle </code>
-      </td>
-      <td>
-        <code> 15 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Maximal snowflakes rotation angle (in degrees) </div>
-      </td>
-      <td>
-        <code> max-rotation-angle </code>
-      </td>
-      <td>
-        <code> 45 </code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div> Maximal snowflakes number on the screen (max-flakes restriction). Re-enable extension to apply </div>
-      </td>
-      <td>
-        <code> flakes-limit </code>
-      </td>
-      <td>
-        <code> 30 </code>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br>
+<code>export GSETTINGS_SCHEMA_DIR=~/.local/share/gnome-shell/extensions/snowy@exposedcat/schemas 
+glib-compile-schemas ~/.local/share/gnome-shell/extensions/snowy@exposedcat/schemas</code></pre>
+4. Logout and login again
 
 ## License
 
