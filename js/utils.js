@@ -4,9 +4,13 @@ export function random(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export function setInterval(mainFunc, endFunc, delay) {
-	return GLib.timeout_add(GLib.PRIORITY_DEFAULT, delay, () => {
+export function setInterval(mainFunc, endFunc, delayFunc, onRecreated) {
+	const id = GLib.timeout_add(GLib.PRIORITY_DEFAULT, delayFunc(), () => {
 		mainFunc()
-		return endFunc() ? GLib.SOURCE_REMOVE : GLib.SOURCE_CONTINUE
+		if (!endFunc())  {
+			setInterval(mainFunc, endFunc, delayFunc, onRecreated)
+		}
+		return GLib.SOURCE_REMOVE
 	})
+	onRecreated(id)
 }

@@ -35,7 +35,7 @@ export class Manager {
 		this.snowing = false
 	}
 
-	startSnowing(config) {
+	startSnowing(settings) {
 		this.snowing = true
 		const onAnimationComplete = destroySnowflake => {
 			this.snowflakesCount--
@@ -44,15 +44,15 @@ export class Manager {
 		const snowFunc = () => {
 			if (this.snowing) {
 				const newSnowflakesCount = random(
-					config.int('min-flakes'),
-					config.int('max-flakes')
+					settings.get_int('min-flakes'),
+					settings.get_int('max-flakes')
 				)
 				for (
 					let i = 0;
-					i < newSnowflakesCount && this.snowflakesCount <= config.int('flakes-limit');
+					i < newSnowflakesCount && this.snowflakesCount <= settings.get_int('flakes-limit');
 					++i
 				) {
-					const snowflake = new Snowflake(config)
+					const snowflake = new Snowflake(settings)
 					this.snowflakesCount++
 					snowflake.fall(
 						onAnimationComplete.bind(this),
@@ -63,8 +63,9 @@ export class Manager {
 			}
 		}
 		const endFunc = () => !this.snowing
-		const delay = config.int('interval')
+		const onRecreated = timerId => this.timerId = timerId
+		const delayFunc = () => settings.get_int('interval')
 
-		this.timerId = setInterval(snowFunc, endFunc, delay)
+		setInterval(snowFunc, endFunc, delayFunc, onRecreated)
 	}
 }

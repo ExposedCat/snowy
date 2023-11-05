@@ -5,8 +5,8 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js'
 import { random } from './utils.js'
 
 export class Snowflake {
-	constructor(config) {
-		const icons = config.string('flake-icons').split(',')
+	constructor(settings) {
+		const icons = settings.get_string('flake-icons').split(',')
 		const iconNumber = random(0, icons.length - 1)
 		const icon = icons[iconNumber]
 
@@ -15,18 +15,18 @@ export class Snowflake {
 			style_class: 'snowflake'
 		})
 
-		const minSize = config.int('min-size')
-		const maxSize = config.int('max-size')
+		const minSize = settings.get_int('min-size')
+		const maxSize = settings.get_int('max-size')
 		const size = random(minSize, maxSize)
 		this.label.set_style(`font-size: ${size}px;`)
 
 		const side = random(0, 1) || -1
-		const minRotation = config.int('min-rotation-angle')
-		const maxRotation = config.int('max-rotation-angle')
+		const minRotation = settings.get_int('min-rotation-angle')
+		const maxRotation = settings.get_int('max-rotation-angle')
 		this.rotationAngle = random(minRotation, maxRotation) * side
 
-		const minDuration = config.int('min-fall-duration')
-		const maxDuration = config.int('max-fall-duration')
+		const minDuration = settings.get_int('min-fall-duration')
+		const maxDuration = settings.get_int('max-fall-duration')
 		this.duration = random(minDuration, maxDuration)
 	}
 
