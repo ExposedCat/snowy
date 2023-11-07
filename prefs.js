@@ -7,7 +7,7 @@ import { ExtensionPreferences } from 'resource:///org/gnome/Shell/Extensions/js/
 
 export default class SnowyExtensionPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
-        this.settings = this.getSettings()
+        window._settings = this.getSettings()
 
         const appearancePage = new Adw.PreferencesPage({
             title: 'Appearance',
@@ -155,7 +155,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
     }
 
     bindStringRow(row, key) {
-        this.settings.bind(key, row, 'text', Gio.SettingsBindFlags.DEFAULT)
+        window._settings.bind(key, row, 'text', Gio.SettingsBindFlags.DEFAULT)
     }
 
     bindNumberRow({ row, key, maxRow = null, maxKey = null, range = [0, 500, 5] }) {
@@ -164,14 +164,14 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             upper: range[1],
             step_increment: range[2]
         })
-        row.value = this.settings.get_int(key)
+        row.value = window._settings.get_int(key)
         row.connect('notify::value', spin => {
             const newValue = spin.get_value()
-            this.settings.set_int(key, newValue)
+            window._settings.set_int(key, newValue)
             if (maxKey) {
-                const maxValue = this.settings.get_int(maxKey)
+                const maxValue = window._settings.get_int(maxKey)
                 if (maxValue < newValue) {
-                    this.settings.set_int(maxKey, newValue)
+                    window._settings.set_int(maxKey, newValue)
                     if (maxRow) {
                         maxRow.value = newValue
                     }
