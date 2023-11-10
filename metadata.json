@@ -1,11 +1,11 @@
 {
-  "description": "Make you festive mood with falling snow on your GNOME DE system",
+  "description": "Let it snow!\n\n- GNOME 45 support\n- Multiple monitors support\n- GUI preferences\n- Animation configuration\n- Fully customizable appearance",
   "name": "Snowy",
   "shell-version": [
     "45"
   ],
   "url": "https://github.com/ExposedCat/snowy",
   "uuid": "snowy@exposedcat",
-  "version": 3.3,
+  "version": 3.4,
   "settings-schema": "org.gnome.shell.extensions.snowy"
 }
