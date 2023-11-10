@@ -1,6 +1,7 @@
 import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js'
 
 import { Manager } from './js/manager.js'
+import { Utils } from './js/utils.js';
 
 export default class SnowyExtension extends Extension {
 	manager = null
@@ -14,7 +15,8 @@ export default class SnowyExtension extends Extension {
 	}
 
 	disable() {
-		this.manager.stopSnowing()
+		this.manager.dispose()
 		this.manager = null
+		Utils.dispose()
 	}
 }

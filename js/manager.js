@@ -1,12 +1,10 @@
-import GLib from 'gi://GLib'
 import * as Main from 'resource:///org/gnome/shell/ui/main.js'
 
 import { Snowflake } from './snowflake.js' 
-import { random, setInterval } from './utils.js'
+import { Utils } from './utils.js'
 
 export class Manager {
 	constructor() {
-		this.timerId = null
 		this.snowing = false
 		this.snowflakesCount = 0
 		this.maxX = 0
@@ -28,10 +26,6 @@ export class Manager {
 	}
 
 	stopSnowing() {
-		if (this.timerId) {
-			GLib.Source.remove(this.timerId)
-			this.timerId = null
-		}
 		this.snowing = false
 	}
 
@@ -43,7 +37,7 @@ export class Manager {
 		}
 		const snowFunc = () => {
 			if (this.snowing) {
-				const newSnowflakesCount = random(
+				const newSnowflakesCount = Utils.random(
 					settings.get_int('min-flakes'),
 					settings.get_int('max-flakes')
 				)
@@ -63,9 +57,12 @@ export class Manager {
 			}
 		}
 		const endFunc = () => !this.snowing
-		const onRecreated = timerId => this.timerId = timerId
 		const delayFunc = () => settings.get_int('interval')
 
-		setInterval(snowFunc, endFunc, delayFunc, onRecreated)
+		Utils.setInterval(snowFunc, endFunc, delayFunc)
+	}
+
+	dispose() {
+		this.stopSnowing()
 	}
 }
