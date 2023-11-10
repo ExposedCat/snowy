@@ -12,5 +12,6 @@ export function setInterval(mainFunc, endFunc, delayFunc, onRecreated) {
 		}
 		return GLib.SOURCE_REMOVE
 	})
+	GLib.Source.remove(id)
 	onRecreated(id)
 }
