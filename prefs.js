@@ -7,6 +7,7 @@ import { ExtensionPreferences } from 'resource:///org/gnome/Shell/Extensions/js/
 
 export default class SnowyExtensionPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
+        // TODO: Use shared class context
         window._settings = this.getSettings()
 
         const appearancePage = new Adw.PreferencesPage({
@@ -19,7 +20,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
         appearancePage.add(snowflakesGroup)
 
         const iconsRow = new Adw.EntryRow({ title: 'Icons (comma-separated)' })
-        this.bindStringRow(iconsRow, 'flake-icons')
+        this.bindStringRow(window._settings, iconsRow, 'flake-icons')
         snowflakesGroup.add(iconsRow)
 
         const maxRotationRow = new Adw.SpinRow({
@@ -27,6 +28,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Maximal snowflakes rotation angle (in degrees)',
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: maxRotationRow,
             key: 'max-rotation-angle',
             range: [0, 360, 5]
@@ -36,6 +38,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Minimal snowflakes rotation angle (in degrees)'
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: minRotationRow,
             key: 'min-rotation-angle',
             maxRow: maxRotationRow,
@@ -50,6 +53,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Maximal snowflake size (in px)',
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: maxSizeRow,
             key: 'max-size',
             range: [10, 500, 10]
@@ -59,6 +63,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Minimal snowflake size (in px)',
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: minSizeRow,
             key: 'min-size',
             maxRow: maxSizeRow,
@@ -81,6 +86,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Maximal amount of snowflakes per single drop'
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: maxFlakesRow,
             key: 'max-flakes',
             range: [0, 500, 1]
@@ -90,6 +96,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Minimal amount of snowflakes per single drop'
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: minFlakesRow,
             key: 'min-flakes',
             maxRow: maxFlakesRow,
@@ -104,6 +111,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Maximal snowflakes number on screen'
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: flakesLimitRow,
             key: 'flakes-limit',
             range: [0, 500, 5]
@@ -124,6 +132,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Maximal snowflakes falling duration (in ms)'
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: maxFallDurationRow,
             key: 'max-fall-duration',
             range: [0, 60_000, 100]
@@ -133,6 +142,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Minimal snowflakes falling duration (in ms)'
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: minFallDurationRow,
             key: 'min-fall-duration',
             maxRow: maxFallDurationRow,
@@ -147,6 +157,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
             subtitle: 'Interval between falling (in ms)'
         })
         this.bindNumberRow({
+            settings: window._settings,
             row: intervalRow,
             key: 'interval',
             range: [0, 60_000, 100]
@@ -154,24 +165,24 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
         animationGroup.add(intervalRow)
     }
 
-    bindStringRow(row, key) {
-        window._settings.bind(key, row, 'text', Gio.SettingsBindFlags.DEFAULT)
+    bindStringRow(settings, row, key) {
+        settings.bind(key, row, 'text', Gio.SettingsBindFlags.DEFAULT)
     }
 
-    bindNumberRow({ row, key, maxRow = null, maxKey = null, range = [0, 500, 5] }) {
+    bindNumberRow({ settings, row, key, maxRow = null, maxKey = null, range = [0, 500, 5] }) {
         row.adjustment = new Gtk.Adjustment({
             lower: range[0],
             upper: range[1],
             step_increment: range[2]
         })
-        row.value = window._settings.get_int(key)
+        row.value = settings.get_int(key)
         row.connect('notify::value', spin => {
             const newValue = spin.get_value()
-            window._settings.set_int(key, newValue)
+            settings.set_int(key, newValue)
             if (maxKey) {
-                const maxValue = window._settings.get_int(maxKey)
+                const maxValue = settings.get_int(maxKey)
                 if (maxValue < newValue) {
-                    window._settings.set_int(maxKey, newValue)
+                    settings.set_int(maxKey, newValue)
                     if (maxRow) {
                         maxRow.value = newValue
                     }
