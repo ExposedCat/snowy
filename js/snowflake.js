@@ -32,13 +32,13 @@ export class Snowflake {
 
 	destroy() {
 		this.label.remove_all_transitions()
-		Main.uiGroup.remove_actor(this.label)
+		Main.uiGroup.remove_child(this.label)
 	}
 
 	fall(onCompleteFunc, maxX, maxY) {
 		const xPosition = Utils.random(0, maxX)
 
-		Main.uiGroup.add_actor(this.label)
+		Main.uiGroup.add_child(this.label)
 		this.label.set_position(xPosition, -50)
 
 		const { label, destroy } = this
