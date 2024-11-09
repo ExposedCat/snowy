@@ -1,0 +1,32 @@
+{
+  "name": "gnome-shell-snowy",
+  "description": "Falling snow for GNOME Shell",
+  "version": "1.0.0",
+  "keywords": [],
+  "scripts": {
+    "start": "./cli dev",
+    "clean": "./cli clean",
+    "build": "./cli build",
+    "pack": "./cli pack"
+  },
+  "author": "ExposedCat",
+  "license": "LGPL-3.0-or-later",
+  "devDependencies": {
+    "@girs/gda-5.0": "^5.0.0-4.0.0-beta.14",
+    "@girs/gjs": "^4.0.0-beta.7",
+    "@girs/gnome-shell": "^46.0.1",
+    "@types/node": "^22.4.0",
+    "@biomejs/biome": "1.9.4",
+    "typescript": "^5.5.3"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExposedCat/gnome-focus-mode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ExposedCat/gnome-focus-mode/issues"
+  },
+  "homepage": "https://github.com/ExposedCat/gnome-focus-mode#readme",
+  "sideEffects": false
+}
