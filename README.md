@@ -21,18 +21,31 @@
 1. Download extension
 <pre language="bash">
 <code>git clone https://github.com/ExposedCat/snowy.git
+cd snowy
 </code></pre>
-2. Add extension to system
+2. Build extension
 <pre language="bash">
-<code>mv snowy ~/.local/share/gnome-shell/extensions/snowy@exposedcat
+<code>./cli build
 </code></pre>
-3. Build extension schemas
+3. Install extension
 <pre language="bash">
-<code>export GSETTINGS_SCHEMA_DIR=~/.local/share/gnome-shell/extensions/snowy@exposedcat/schemas
-glib-compile-schemas ~/.local/share/gnome-shell/extensions/snowy@exposedcat/schemas</code></pre>
+<code>./cli install
+</code></pre>
 4. Logout and login again
+
+<br>
+<h1>Development</h1>
+1. Download extension
+<pre language="bash">
+<code>git clone https://github.com/ExposedCat/snowy.git
+cd snowy
+</code></pre>
+2. Run dev mode
+<pre language="bash">
+<code>./cli dev
+</code></pre>
 
 ## License
 
 Snowy Gnome Shell extension is distributed under the terms of the GNU General Public License,
-version 2 or later.
+version 3.0 or later.
