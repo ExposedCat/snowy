@@ -4,6 +4,8 @@ NAME="snowy"
 DOMAIN="exposedcat"
 
 SLUG="$NAME@$DOMAIN"
+ARCHIVE="$SLUG.shell-extension.zip"
+
 EXTENSIONS="/home/$USER/.local/share/gnome-shell/extensions"
 
 build() {
@@ -28,7 +30,7 @@ build)
 pack)
   rm -f $NAME.zip
   pushd dist
-  zip "../$NAME.zip" -9r ./*.js ./*.css ./**/*.js ./**/*.css metadata.json
+  zip "../$ARCHIVE" -9r ./*.js ./*.css ./**/*.js ./**/*.css metadata.json
   popd
   ;;
 install)
