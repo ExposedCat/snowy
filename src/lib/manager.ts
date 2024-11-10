@@ -1,14 +1,16 @@
+import Gio from 'gi://Gio'
 import * as Main from 'resource:///org/gnome/shell/ui/main.js'
 
-import { Snowflake } from './snowflake.js' 
+import { Snowflake } from './snowflake.js'
 import { Utils } from './utils.js'
 
 export class Manager {
+	snowing = false
+	snowflakesCount = 0
+	maxX = 0
+	maxY = 0
+
 	constructor() {
-		this.snowing = false
-		this.snowflakesCount = 0
-		this.maxX = 0
-		this.maxY = 0
 		this._defineSnowingArea()
 	}
 
@@ -29,12 +31,14 @@ export class Manager {
 		this.snowing = false
 	}
 
-	startSnowing(settings) {
+	startSnowing(settings: Gio.Settings) {
 		this.snowing = true
-		const onAnimationComplete = destroySnowflake => {
-			this.snowflakesCount--
+
+		const onAnimationComplete = (destroySnowflake: () => void) => {
+			this.snowflakesCount -= 1
 			destroySnowflake()
 		}
+
 		const snowFunc = () => {
 			if (this.snowing) {
 				const newSnowflakesCount = Utils.random(
@@ -43,7 +47,8 @@ export class Manager {
 				)
 				for (
 					let i = 0;
-					i < newSnowflakesCount && this.snowflakesCount <= settings.get_int('flakes-limit');
+					i < newSnowflakesCount &&
+					this.snowflakesCount <= settings.get_int('flakes-limit');
 					++i
 				) {
 					const snowflake = new Snowflake(settings)

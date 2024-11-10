@@ -1,11 +1,17 @@
-import St from 'gi://St'
 import Clutter from 'gi://Clutter'
+import Gio from 'gi://Gio'
+import St from 'gi://St'
 import * as Main from 'resource:///org/gnome/shell/ui/main.js'
 
+import { EaseLabelArgs } from './label.js'
 import { Utils } from './utils.js'
 
 export class Snowflake {
-	constructor(settings) {
+	private label: St.Label
+	private rotationAngle: number
+	private duration: number
+
+	constructor(settings: Gio.Settings) {
 		const icons = settings.get_string('flake-icons').split(',')
 		const iconNumber = Utils.random(0, icons.length - 1)
 		const icon = icons[iconNumber]
@@ -32,24 +38,25 @@ export class Snowflake {
 
 	destroy() {
 		this.label.remove_all_transitions()
-		Main.uiGroup.remove_child(this.label)
+		Main.layoutManager.uiGroup.remove_child(this.label)
 	}
 
-	fall(onCompleteFunc, maxX, maxY) {
+	fall(
+		onCompleteFunc: (destroy: () => void) => void,
+		maxX: number,
+		maxY: number
+	) {
 		const xPosition = Utils.random(0, maxX)
 
-		Main.uiGroup.add_child(this.label)
+		Main.layoutManager.uiGroup.add_child(this.label)
 		this.label.set_position(xPosition, -50)
-
-		const { label, destroy } = this
-
-		label.ease({
+		;(this.label as any).ease({
 			y: maxY,
 			x: xPosition,
 			rotation_angle_z: this.rotationAngle,
 			duration: this.duration,
 			mode: Clutter.AnimationMode.LINEAR,
-			onComplete: () => onCompleteFunc(destroy.bind(this))
-		})
+			onComplete: () => onCompleteFunc(this.destroy.bind(this))
+		} as EaseLabelArgs)
 	}
 }
