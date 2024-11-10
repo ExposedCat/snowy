@@ -1,7 +1,7 @@
 import GLib from 'gi://GLib'
 
 export class Utils {
-	static timerId = 0
+	static timerIds = new Set<number>()
 
 	static random(min: number, max: number) {
 		return Math.floor(Math.random() * (max - min + 1)) + min
@@ -12,28 +12,31 @@ export class Utils {
 		endFunc: () => boolean,
 		delayFunc: () => number
 	) {
-		this.timerId = GLib.timeout_add(
+		const timerId = GLib.timeout_add(
 			GLib.PRIORITY_DEFAULT,
 			delayFunc(),
 			() => {
 				mainFunc()
 				if (!endFunc()) {
-					this._cleanupTimeout()
 					this.setInterval(mainFunc, endFunc, delayFunc)
 				}
-				this.timerId = 0
+				this.timerIds.delete(timerId)
 				return GLib.SOURCE_REMOVE
 			}
 		)
+		this.timerIds.add(timerId)
 	}
 
-	static _cleanupTimeout() {
-		if (this.timerId) {
-			GLib.Source.remove(this.timerId)
+	static _cleanupTimeouts() {
+		if (this.timerIds.size !== 0) {
+			for (const timerId of this.timerIds) {
+				GLib.Source.remove(timerId)
+			}
+			this.timerIds.clear()
 		}
 	}
 
 	static dispose() {
-		this._cleanupTimeout()
+		this._cleanupTimeouts()
 	}
 }
