@@ -140,7 +140,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
 
 		const maxFallDurationRow = new Adw.SpinRow({
 			title: 'Maximal fall duration',
-			subtitle: 'Maximal snowflakes falling duration (in ms)'
+			subtitle: 'Maximal snowflakes falling duration (in ms, 1s = 1000ms)'
 		})
 		this.bindNumberRow({
 			settings: window._settings,
@@ -150,7 +150,7 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
 		})
 		const minFallDurationRow = new Adw.SpinRow({
 			title: 'Minimal fall duration',
-			subtitle: 'Minimal snowflakes falling duration (in ms)'
+			subtitle: 'Minimal snowflakes falling duration (in ms, 1s = 1000ms)'
 		})
 		this.bindNumberRow({
 			settings: window._settings,
@@ -165,13 +165,13 @@ export default class SnowyExtensionPreferences extends ExtensionPreferences {
 
 		const intervalRow = new Adw.SpinRow({
 			title: 'Fall interval',
-			subtitle: 'Interval between falling (in ms)'
+			subtitle: 'Interval between falling (in ms, 1s = 1000ms)'
 		})
 		this.bindNumberRow({
 			settings: window._settings,
 			row: intervalRow,
 			key: 'interval',
-			range: [0, 60_000, 100]
+			range: [1_000, 60_000, 100]
 		})
 		animationGroup.add(intervalRow)
 	}
