@@ -28,10 +28,10 @@ build)
   build
   ;;
 pack)
-  rm -f $NAME.zip
+  rm -fr $NAME.zip dist
   build
   pushd dist
-  zip "../$ARCHIVE" -9r ./*.js ./*.css ./**/*.js ./**/*.css schemas/*.compiled metadata.json
+  zip "../$ARCHIVE" -9r ./*.js ./*.css ./**/*.js ./**/*.css schemas/*.xml metadata.json
   popd
   ;;
 install)
