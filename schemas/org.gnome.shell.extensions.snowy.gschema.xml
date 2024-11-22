@@ -3,7 +3,7 @@
     <schema id="org.gnome.shell.extensions.snowy" path="/org/gnome/shell/extensions/snowy/">
         <!-- FLAKES -->
         <key type="s" name="flake-icons">
-            <default>"❅,❆,❄"</default>
+            <default>"❅,❆,❄,❄️,*,✳,❇,❈,※,✺"</default>
             <summary>Snowflake icons</summary>
             <description />
         </key>
