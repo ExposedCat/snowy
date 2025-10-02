@@ -1,0 +1,112 @@
+name: Build and Package
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  packages: write
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y glib2.0-dev libglib2.0-dev-bin gettext
+
+    - name: Build extension
+      run: npm run build
+
+    - name: Cleanup build
+      run: npm run cleanup
+
+    - name: Package extension
+      run: npm run pack
+
+    - name: Get package version
+      id: package_version
+      run: echo "version=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+    - name: Check if tag exists
+      id: tag_exists
+      run: |
+        if git rev-parse "${{ steps.package_version.outputs.version }}" >/dev/null 2>&1; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Get previous tag
+      if: github.ref == 'refs/heads/main'
+      id: previous_tag
+      run: |
+        PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+        echo "from_tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
+
+    - name: Create tag
+      if: github.ref == 'refs/heads/main' && steps.tag_exists.outputs.exists == 'false'
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git tag ${{ steps.package_version.outputs.version }}
+        git push origin ${{ steps.package_version.outputs.version }}
+
+    - name: Generate changelog
+      if: github.ref == 'refs/heads/main' && steps.tag_exists.outputs.exists == 'false'
+      id: changelog
+      uses: mikepenz/release-changelog-builder-action@v5
+      with:
+        mode: "HYBRID"
+        configuration: ".github/changelog-config.json"
+        outputFile: "CHANGELOG.md"
+        fromTag: ${{ steps.previous_tag.outputs.from_tag }}
+        toTag: ${{ steps.package_version.outputs.version }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+    - name: Upload package artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: gnome-shell-extension-package
+        path: snowy@exposedcat.shell-extension.zip
+        retention-days: 30
+
+    - name: Create release
+      if: github.ref == 'refs/heads/main' && steps.tag_exists.outputs.exists == 'false'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.package_version.outputs.version }}
+        name: Release ${{ steps.package_version.outputs.version }}
+        body: ${{ steps.changelog.outputs.changelog }}
+        files: |
+          snowy@exposedcat.shell-extension.zip
+          CHANGELOG.md
+        draft: false
+        prerelease: false
+        generate_release_notes: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -4,10 +4,14 @@
 	"version": "1.0.0",
 	"keywords": [],
 	"scripts": {
-		"start": "./cli dev",
-		"clean": "./cli clean",
-		"build": "./cli build",
-		"pack": "./cli pack"
+		"start": "./scripts/cli dev",
+		"clean": "./scripts/cli clean",
+		"build": "./scripts/cli build",
+		"cleanup": "./scripts/cli cleanup",
+		"inject": "./scripts/cli inject",
+		"pack": "./scripts/cli pack",
+		"translate": "./scripts/cli translate",
+		"format": "biome format src --write; biome lint src --write "
 	},
 	"author": "ExposedCat",
 	"license": "LGPL-3.0-or-later",
