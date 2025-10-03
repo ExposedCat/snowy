@@ -6,8 +6,9 @@
 
 <div align="center">
 
-  [![](https://img.shields.io/badge/author%20blog%20on-Telegram-informational?style=for-the-badge&logo=telegram&logoColor=26A5E4&color=26A5E4)](https://t.me/ExposedCatDev)
-  [![](https://img.shields.io/badge/author-Reddit-informational?style=for-the-badge&logo=reddit&logoColor=FF5700&color=FF5700)](https://www.reddit.com/user/ExposedCatDev)
+[![](https://img.shields.io/badge/author%20blog%20on-Telegram-informational?style=for-the-badge&logo=telegram&logoColor=26A5E4&color=26A5E4)](https://t.me/ExposedCatDev)
+[![](https://img.shields.io/badge/author-Reddit-informational?style=for-the-badge&logo=reddit&logoColor=FF5700&color=FF5700)](https://www.reddit.com/user/ExposedCatDev)
+
 </div>
 
 <br>
@@ -27,9 +28,9 @@ cd snowy
 <pre language="bash">
 <code>./cli build
 </code></pre>
-3. Install extension
+3. Inject extension
 <pre language="bash">
-<code>./cli install
+<code>./cli inject
 </code></pre>
 4. Logout and login again
 
@@ -42,10 +43,10 @@ cd snowy
 </code></pre>
 2. Run dev mode
 <pre language="bash">
-<code>./cli dev
+<code>npm start
 </code></pre>
 
 ## License
 
-Snowy Gnome Shell extension is distributed under the terms of the GNU General Public License,
-version 3.0 or later.
+Snowy Gnome Shell extension is distributed under the terms of the GNU General
+Public License, version 3.0 or later.
