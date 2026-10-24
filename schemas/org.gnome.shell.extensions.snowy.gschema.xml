@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
     <schema id="org.gnome.shell.extensions.snowy" path="/org/gnome/shell/extensions/snowy/">
+        <key type="b" name="avoid-active-window">
+            <default>true</default>
+            <summary>Don't fall on active window</summary>
+            <description>Keep snow behind the focused window.</description>
+        </key>
+        <key type="b" name="piles-on-windows">
+            <default>false</default>
+            <summary>Piles on windows</summary>
+            <description>Gather snow on the focused window and release it when it moves.</description>
+        </key>
         <!-- FLAKES -->
         <key type="s" name="flake-icons">
             <default>"❅,❆,❄"</default>

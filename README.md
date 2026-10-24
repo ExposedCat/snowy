@@ -48,6 +48,14 @@ cd snowy
 npm run start:container
 </code></pre>
 
+By default, snow falls behind the focused window. In Appearance preferences,
+"Don't fall on active window" controls this behavior, and "Piles on windows"
+enables accumulation along its top edge (off by default). Moving, resizing, or
+changing focus releases the pile. Accumulation is
+limited to 24 pixels, and released flakes respect the configured snowflake limit.
+Fullscreen windows and windows touching the top of the work area do not collect
+snow. Snowfall pauses on fullscreen monitors and while the desktop is hidden.
+
 ## License
 
 Snowy Gnome Shell extension is distributed under the terms of the GNU General

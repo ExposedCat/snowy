@@ -84,6 +84,23 @@ export default class SnowyPreferences extends ExtensionPreferences {
       "Appearance",
       "preferences-desktop-appearance-symbolic",
     );
+    for (const { key, title, subtitle } of [
+      {
+        key: "avoid-active-window",
+        title: "Don't fall on active window",
+        subtitle: "Keep snow behind the focused window",
+      },
+      {
+        key: "piles-on-windows",
+        title: "Piles on windows",
+        subtitle:
+          "Gather snow on the focused window and release it when it moves",
+      },
+    ]) {
+      const row = new Adw.SwitchRow({ title, subtitle });
+      settings.bind(key, row, "active", Gio.SettingsBindFlags.DEFAULT);
+      appearanceGroup.add(row);
+    }
     const iconsRow = new Adw.EntryRow({ title: "Icons (comma-separated)" });
     settings.bind(
       "flake-icons",

@@ -13,6 +13,8 @@ export type Configuration = {
   flakesPerDrop: Range;
   flakesLimit: number;
   interval: number;
+  avoidActiveWindow: boolean;
+  pilesOnWindows: boolean;
 };
 
 export class SettingsManager {
@@ -28,6 +30,13 @@ export class SettingsManager {
 
   get configuration() {
     return this._configuration;
+  }
+
+  subscribe(onChanged: (key: string) => void) {
+    const signal = this.settings.connect("changed", (_settings, key) =>
+      onChanged(key),
+    );
+    return () => this.settings.disconnect(signal);
   }
 
   dispose() {
@@ -47,6 +56,8 @@ export class SettingsManager {
       flakesPerDrop: this.range("min-flakes", "max-flakes"),
       flakesLimit: this.settings.get_int("flakes-limit"),
       interval: this.settings.get_int("interval"),
+      avoidActiveWindow: this.settings.get_boolean("avoid-active-window"),
+      pilesOnWindows: this.settings.get_boolean("piles-on-windows"),
     };
   }
 
