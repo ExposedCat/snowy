@@ -24,15 +24,11 @@
 <code>git clone https://github.com/ExposedCat/snowy.git
 cd snowy
 </code></pre>
-2. Build extension
+2. Build and install extension
 <pre language="bash">
-<code>./cli build
+<code>npm run install:local
 </code></pre>
-3. Inject extension
-<pre language="bash">
-<code>./cli inject
-</code></pre>
-4. Logout and login again
+3. Logout and login again
 
 <br>
 <h1>Development</h1>
@@ -41,9 +37,15 @@ cd snowy
 <code>git clone https://github.com/ExposedCat/snowy.git
 cd snowy
 </code></pre>
-2. Run dev mode
+2. Install dependencies
+<pre language="bash">
+<code>npm install
+</code></pre>
+3. Run dev mode
 <pre language="bash">
 <code>npm start
+# Or in a container
+npm run start:container
 </code></pre>
 
 ## License

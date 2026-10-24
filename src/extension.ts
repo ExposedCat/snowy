@@ -1,22 +1,22 @@
-import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js'
+import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 
-import { Manager } from './lib/manager.js'
-import { Utils } from './lib/utils.js'
+import { SnowManager } from "./managers/snow/manager.js";
+import { SettingsManager } from "./utils/settings.js";
 
 export default class SnowyExtension extends Extension {
-	manager: Manager | null = null
+  private settingsManager?: SettingsManager;
+  private snowManager?: SnowManager;
 
-	enable() {
-		if (this.manager === null) {
-			this.manager = new Manager()
-		}
-		const settings = this.getSettings()
-		this.manager.startSnowing(settings)
-	}
+  enable() {
+    this.settingsManager = new SettingsManager(this.getSettings());
+    this.snowManager = new SnowManager(this.settingsManager);
+  }
 
-	disable() {
-		this.manager?.dispose()
-		this.manager = null
-		Utils.dispose()
-	}
+  disable() {
+    this.snowManager?.dispose();
+    this.settingsManager?.dispose();
+
+    this.snowManager = undefined;
+    this.settingsManager = undefined;
+  }
 }

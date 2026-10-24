@@ -9,13 +9,13 @@ EXTENSIONS="/home/$USER/.local/share/gnome-shell/extensions"
 
 pack() {
 	cd dist || exit
-	zip -9r "../$ARCHIVE" .
+	zip -FS -9r "../$ARCHIVE" .
 	cd ..
 }
 
 build() {
   npx tsc
-  cp -r metadata.json schemas dist
+  cp -r metadata.json schemas src/styles/stylesheet.css dist
 
   glib-compile-schemas ./dist/schemas
   # ./scripts/compile-locales.sh "$SLUG"
@@ -26,6 +26,16 @@ inject() {
   rm -rf "${EXTENSIONS:?}/$SLUG"
   unzip $ARCHIVE -d "$EXTENSIONS/$SLUG"
   glib-compile-schemas "$EXTENSIONS/$SLUG/schemas"
+}
+
+deps() {
+  npm install
+}
+
+install() {
+	build
+	pack
+  inject
 }
 
 case $1 in
@@ -51,11 +61,17 @@ translate)
 uninstall)
   rm -rf "${EXTENSIONS:?}/$SLUG"
   ;;
+install)
+  deps
+  install
+  ;;
 dev)
-	build
-	pack
-  inject
-  dbus-run-session -- gnome-shell --nested --wayland
+	install
+  dbus-run-session gnome-shell --devkit --wayland --no-x11
+  ;;
+dev:container)
+	install
+  distrobox enter gnome-dev -- env PIPEWIRE_RUNTIME_DIR="/run/host/${XDG_RUNTIME_DIR#/}" PIPEWIRE_REMOTE=pipewire-0 G_MESSAGES_DEBUG=all dbus-run-session gnome-shell --devkit --wayland --no-x11
   ;;
 *)
   echo "Unknown command '$1'"

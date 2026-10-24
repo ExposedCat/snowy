@@ -1,37 +1,40 @@
 {
-	"name": "gnome-shell-snowy",
-	"description": "Falling snow for GNOME Shell",
-	"version": "1.0.0",
-	"keywords": [],
-	"scripts": {
-		"start": "./scripts/cli dev",
-		"clean": "./scripts/cli clean",
-		"build": "./scripts/cli build",
-		"cleanup": "./scripts/cli cleanup",
-		"inject": "./scripts/cli inject",
-		"pack": "./scripts/cli pack",
-		"translate": "./scripts/cli translate",
-		"format": "biome format src --write; biome lint src --write "
-	},
-	"author": "ExposedCat",
-	"license": "LGPL-3.0-or-later",
-	"dependencies": {
-		"@girs/gjs": "^4.0.0-beta.19",
-		"@girs/gnome-shell": "^47.0.0"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@types/node": "^22.4.0",
-		"typescript": "^5.5.3"
-	},
-	"type": "module",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ExposedCat/gnome-focus-mode.git"
-	},
-	"bugs": {
-		"url": "https://github.com/ExposedCat/gnome-focus-mode/issues"
-	},
-	"homepage": "https://github.com/ExposedCat/gnome-focus-mode#readme",
-	"sideEffects": false
+  "name": "gnome-shell-snowy",
+  "description": "Falling snow for GNOME Shell",
+  "version": "3.7.0",
+  "keywords": [],
+  "scripts": {
+    "start": "./scripts/cli dev",
+    "start:container": "./scripts/cli dev:container",
+    "clean": "./scripts/cli clean",
+    "build": "./scripts/cli build",
+    "cleanup": "./scripts/cli cleanup",
+    "inject": "./scripts/cli inject",
+    "install:local": "./scripts/cli install",
+    "pack": "./scripts/cli pack",
+    "check:shexli": "venv/bin/python scripts/check-shexli.py snowy@exposedcat.shell-extension.zip",
+    "translate": "./scripts/cli translate",
+    "format": "biome check --write src"
+  },
+  "author": "ExposedCat",
+  "license": "LGPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "^22.4.0",
+    "typescript": "^6.0.2"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExposedCat/snowy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ExposedCat/snowy/issues"
+  },
+  "homepage": "https://github.com/ExposedCat/snowy#readme",
+  "sideEffects": false,
+  "dependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@girs/gjs": "^4.0.0-beta.7",
+    "@girs/gnome-shell": "^46.0.1"
+  }
 }

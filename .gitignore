@@ -1,5 +1,7 @@
-snowy@exposedcat.shell-extension.zip
-schemas/gschemas.compiled
-
 node_modules
+/venv/
+scripts/__pycache__
+schemas/gschemas.compiled
 dist
+*.zip
+*~
