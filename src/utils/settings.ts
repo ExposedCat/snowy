@@ -15,6 +15,7 @@ export type Configuration = {
   interval: number;
   avoidActiveWindow: boolean;
   pilesOnWindows: boolean;
+  pileOnAllWindows: boolean;
 };
 
 export class SettingsManager {
@@ -58,6 +59,7 @@ export class SettingsManager {
       interval: this.settings.get_int("interval"),
       avoidActiveWindow: this.settings.get_boolean("avoid-active-window"),
       pilesOnWindows: this.settings.get_boolean("piles-on-windows"),
+      pileOnAllWindows: this.settings.get_boolean("pile-on-all-windows"),
     };
   }
 

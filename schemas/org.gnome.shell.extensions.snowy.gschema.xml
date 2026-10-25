@@ -9,7 +9,12 @@
         <key type="b" name="piles-on-windows">
             <default>false</default>
             <summary>Piles on windows</summary>
-            <description>Gather snow on the focused window and release it when it moves.</description>
+            <description>Keep accumulated snow on window tops until they move.</description>
+        </key>
+        <key type="b" name="pile-on-all-windows">
+            <default>false</default>
+            <summary>Pile on all windows</summary>
+            <description>Collect snow on exposed tops of inactive windows as well as the focused window.</description>
         </key>
         <!-- FLAKES -->
         <key type="s" name="flake-icons">

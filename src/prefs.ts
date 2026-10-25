@@ -93,12 +93,25 @@ export default class SnowyPreferences extends ExtensionPreferences {
       {
         key: "piles-on-windows",
         title: "Piles on windows",
+        subtitle: "Keep snow on window tops until they move",
+      },
+      {
+        key: "pile-on-all-windows",
+        title: "Pile on all windows",
         subtitle:
-          "Gather snow on the focused window and release it when it moves",
+          "Collect snow on exposed window tops, including inactive windows",
       },
     ]) {
       const row = new Adw.SwitchRow({ title, subtitle });
       settings.bind(key, row, "active", Gio.SettingsBindFlags.DEFAULT);
+      if (key === "pile-on-all-windows") {
+        settings.bind(
+          "piles-on-windows",
+          row,
+          "sensitive",
+          Gio.SettingsBindFlags.GET,
+        );
+      }
       appearanceGroup.add(row);
     }
     const iconsRow = new Adw.EntryRow({ title: "Icons (comma-separated)" });

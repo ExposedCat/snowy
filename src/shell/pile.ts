@@ -1,10 +1,11 @@
 import type Clutter from "gi://Clutter";
 import St from "gi://St";
 
-import type { SnowPosition, SnowSurface } from "./snowflake.js";
+import type { SnowPosition } from "./snowflake.js";
 
 const CELL_WIDTH = 8;
-const MAX_DEPTH = 24;
+export const CORNER_INSET = 24;
+export const MAX_DEPTH = 24;
 
 export type WindowFrame = SnowPosition & {
   width: number;
@@ -13,13 +14,13 @@ export type WindowFrame = SnowPosition & {
 
 export class SnowPile {
   private drawing: St.DrawingArea;
-  private depths: number[];
+  private depths: number[] = [];
+  private accumulated = false;
 
   constructor(
     container: Clutter.Actor,
     private geometry: WindowFrame,
   ) {
-    this.depths = [];
     this.drawing = new St.DrawingArea({ reactive: false });
     this.drawing.connect("repaint", () => this.paint());
     container.add_child(this.drawing);
@@ -30,27 +31,33 @@ export class SnowPile {
     return this.geometry;
   }
 
+  get left() {
+    return this.frame.x + CORNER_INSET;
+  }
+
+  get width() {
+    return Math.max(0, this.frame.width - CORNER_INSET * 2);
+  }
+
   reset(frame: WindowFrame) {
     this.geometry = frame;
+    this.accumulated = false;
     this.depths = Array.from(
-      { length: Math.ceil(frame.width / CELL_WIDTH) },
+      { length: Math.ceil(this.width / CELL_WIDTH) },
       () => 0,
     );
-    this.drawing.set_size(frame.width, MAX_DEPTH);
-    this.drawing.set_position(frame.x, frame.y - MAX_DEPTH);
+    this.drawing.set_size(this.width, MAX_DEPTH);
+    this.drawing.set_position(this.left, frame.y - MAX_DEPTH);
     this.drawing.queue_repaint();
   }
 
-  get surface(): SnowSurface {
-    return {
-      x: this.frame.x,
-      width: this.frame.width,
-      top: (horizontal) =>
-        this.frame.y - (this.depths[this.cell(horizontal)] ?? 0),
-    };
+  top(horizontal: number) {
+    return this.frame.y - (this.depths[this.cell(horizontal)] ?? 0);
   }
 
   deposit(horizontal: number, size: number) {
+    if (horizontal < this.left || horizontal >= this.left + this.width) return;
+    this.accumulated = true;
     const center = this.cell(horizontal);
     const radius = Math.max(1, Math.ceil(size / CELL_WIDTH));
     for (
@@ -68,6 +75,7 @@ export class SnowPile {
   }
 
   release(limit: number): SnowPosition[] {
+    if (!this.accumulated || limit <= 0) return [];
     const occupied = this.depths
       .map((depth, index) => ({ depth, index }))
       .filter(({ depth }) => depth > 0);
@@ -76,7 +84,7 @@ export class SnowPile {
       const { depth, index: cell } =
         occupied[Math.floor((index * occupied.length) / count)];
       return {
-        x: this.frame.x + (cell + 0.5) * CELL_WIDTH,
+        x: this.left + Math.min(this.width - 1, (cell + 0.5) * CELL_WIDTH),
         y: this.frame.y - depth,
       };
     });
@@ -87,7 +95,7 @@ export class SnowPile {
   }
 
   private cell(horizontal: number) {
-    return Math.floor((horizontal - this.frame.x) / CELL_WIDTH);
+    return Math.floor((horizontal - this.left) / CELL_WIDTH);
   }
 
   private paint() {
@@ -96,9 +104,12 @@ export class SnowPile {
       context.setSourceRGBA(1, 1, 1, 1);
       context.moveTo(0, MAX_DEPTH);
       for (const [index, depth] of this.depths.entries()) {
-        context.lineTo(index * CELL_WIDTH, MAX_DEPTH - depth);
+        context.lineTo(
+          Math.min(this.width, (index + 0.5) * CELL_WIDTH),
+          MAX_DEPTH - depth,
+        );
       }
-      context.lineTo(this.frame.width, MAX_DEPTH);
+      context.lineTo(this.width, MAX_DEPTH);
       context.closePath();
       context.fill();
     } finally {
